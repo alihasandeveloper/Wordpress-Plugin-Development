@@ -87,11 +87,11 @@ if (class_exists('MyPlugin')) {
 }
 
 //activation
-//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-activate.php';
+//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-activate.php'; //added inside class
 register_activation_hook(__FILE__, [$myplugin, 'activate']);
 
 //deactivation
-//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-deactivate.php';
+//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-deactivate.php'; //added inside class
 register_deactivation_hook(__FILE__, [$myplugin, 'deactivate']);
 
 //uninstall

@@ -1,0 +1,19 @@
+{
+    "name": "alihaasn/my-plugin",
+    "description": "lorem desc",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "alihasan",
+            "email": "alihasandeveloper@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}
