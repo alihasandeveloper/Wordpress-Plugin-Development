@@ -1,0 +1,1 @@
+<h1>yahoo! I can successfully added admin page </h1>
