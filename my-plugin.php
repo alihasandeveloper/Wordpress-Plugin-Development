@@ -17,6 +17,16 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (file_exists( dirname( __FILE__ ) . '/vendor/autoload.php') ) {
+    require dirname( __FILE__ ) . '/vendor/autoload.php';
+}
+
+
+// call the namespace
+use Inc\Activate;
+use Inc\Deactivate;
+use Inc\Admin\AdminPage;
+
 class MyPlugin
 {
     public $plugin_name;
@@ -45,7 +55,7 @@ class MyPlugin
 
     public function my_plugin_page()
     {
-        require_once plugin_dir_path(__FILE__) . 'templates/admin.php';
+        AdminPage::html();
     }
 
     public function activate()
@@ -53,16 +63,15 @@ class MyPlugin
         // generated a custom post type
         // flush rewrite rules
         $this->custom_post_type();
-        require_once plugin_dir_path(__FILE__) . 'inc/myplugin-activate.php';
-        MyPluginActivate::activate();
+        Activate::activate();
 
     }
 
     public function deactivate()
     {
         // flush rewrite rules
-        require_once plugin_dir_path(__FILE__) . 'inc/myplugin-deactivate.php';
-        MyPluginDeactivate::deactivate();
+//        require_once plugin_dir_path(__FILE__) . 'inc/Deactivate.php';
+        Deactivate::deactivate();
     }
 
     public function custom_post_type()
@@ -87,11 +96,11 @@ if (class_exists('MyPlugin')) {
 }
 
 //activation
-//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-activate.php'; //added inside class
+//require_once plugin_dir_path(__FILE__) . 'inc/Activate.php'; //added inside class
 register_activation_hook(__FILE__, [$myplugin, 'activate']);
 
 //deactivation
-//require_once plugin_dir_path(__FILE__) . 'inc/myplugin-deactivate.php'; //added inside class
+//require_once plugin_dir_path(__FILE__) . 'inc/Deactivate.php'; //added inside class
 register_deactivation_hook(__FILE__, [$myplugin, 'deactivate']);
 
 //uninstall

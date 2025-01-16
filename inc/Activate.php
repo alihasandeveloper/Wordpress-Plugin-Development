@@ -3,12 +3,12 @@
  * @package asif
  */
 
-class MyPluginActivate
+namespace Inc;
+
+class Activate
 {
     public static function activate()
     {
-        echo 'Asif';
-
         flush_rewrite_rules();
     }
 }

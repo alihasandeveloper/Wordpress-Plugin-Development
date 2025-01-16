@@ -3,8 +3,8 @@
  * @package asif
  */
 
-
-class MyPluginDeactivate
+namespace Inc;
+class Deactivate
 {
     static function deactivate() {
         flush_rewrite_rules();
