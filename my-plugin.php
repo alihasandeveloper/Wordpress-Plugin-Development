@@ -19,24 +19,31 @@ if (!defined('ABSPATH')) {
 
 class MyPlugin
 {
+    public $plugin_name;
     function __construct()
     {
-
+        $this->plugin_name = plugin_basename(__FILE__);
     }
 
-    function register()
+    public function register()
     {
         add_action('init', array($this, 'custom_post_type'));
         add_action('admin_enqueue_scripts', array($this, 'register_script_and_styles'));
         add_action('admin_menu', array($this, 'add_admin_page'));
+        add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'setting_link'));
+    }
+    public function setting_link($links) {
+        $custom_links = '<a href="admin.php?page=my_plugin">Settings</a>';
+        array_unshift($links, $custom_links);
+        return $links;
     }
 
-    function add_admin_page()
+    public function add_admin_page()
     {
-        add_menu_page('My Plugin', 'My Plugin', 'manage_options', 'my_plugin', array($this, 'my_plugin_page'), 'dashicons-heart');
+        add_menu_page('My Plugin', 'My Plugin', 'manage_options', 'my_plugin', array($this, 'my_plugin_page'), 'dashicons-heart', 110);
     }
 
-    function my_plugin_page()
+    public function my_plugin_page()
     {
         require_once plugin_dir_path(__FILE__) . 'templates/admin.php';
     }
